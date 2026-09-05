@@ -50,3 +50,94 @@ console.log(filterActiveUsers([
   ]));
 
 // Problem 2 end
+
+//Problem 3 Start 
+
+function countHashtags(caption) {
+     if (typeof caption !== "string") {
+        return "Invalid";
+    }
+    const hashtags = caption
+        .split(" ")
+        .filter(word => word.startsWith("#") && word.length > 1)
+        .map(word => word.slice(1));
+
+          const longestTag = hashtags.reduce(
+        (longest, current) =>
+            current.length > longest.length ? current : longest,
+        ""
+    );
+
+    return {
+        hashtagCount: hashtags.length,
+        longestTag: longestTag
+    };
+}
+
+console.log(countHashtags(["#fun"]))
+
+
+
+
+
+// Problem 3 Complete
+
+//Problem 4 Start
+
+function bonusScore(scores) {
+    if (!Array.isArray(scores) || scores.length === 0){
+        return "Invalid";
+    }
+    let isValid= scores.every(score => typeof score === 'number');
+    if(!isValid){
+        return "Invalid";
+    }
+    scores = scores.map( (numbers)=>numbers+10)
+    console.log(scores);
+    let sum = scores.reduce((accumulator,element)=>{
+        return accumulator+=element;
+    
+    });
+    console.log(sum);
+}
+console.log(bonusScore([80, "90", 70]));
+
+//  Problem 4 end 
+
+
+// Problem 5 start 
+
+function generateLeaderboard(students) {
+    if (!Array.isArray(students)) {
+        return "Invalid";
+    }
+
+    if (students.length === 0) {
+        return "Invalid";
+    }
+
+    let isValid= students.every(student => typeof student === "object" &&
+        student !== null &&
+        "name" in student &&
+        "score" in student &&
+        typeof student.name === "string" &&
+        typeof student.score === "number");
+    if(!isValid){
+        return "Invalid";
+    }
+    const qualified = students.filter(student => {
+        return student.score >= 70;
+    });
+
+    const names = qualified.map(({ name }) => {
+        return name.toUpperCase();
+    });
+
+    return names.slice(0, 3);
+}
+// console.log(generateLeaderboard([{name:"Rafi",score:90},{name:"Sadia",score:65},{name:"Karim",score:85},{name:"Nafis",score:75}]));
+console.log(generateLeaderboard([{name:"Rafi",score:"90"}]
+
+));
+
+//  Problem 5 complete
