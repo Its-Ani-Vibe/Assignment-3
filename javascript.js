@@ -14,6 +14,39 @@ function studentIntroduction(student) {
     }
 }
 
-console.log(studentIntroduction());
+// console.log(studentIntroduction());
 
-//Problem 1 complete 
+//Problem 1 complete  //
+
+
+//Problem 2 Started //
+
+function filterActiveUsers(users) {
+
+
+if (!Array.isArray(users) || users.length === 0){
+    return "Invalid";
+}
+
+const isValid = users.every(user =>
+  typeof user === 'object' &&
+  user !== null &&
+  'name' in user &&
+  'isActive' in user &&
+  typeof user.isActive === 'boolean'
+)
+if (!isValid){
+    return "Invalid"
+}
+
+return users.filter(user => user.isActive === true);
+
+}
+// console.log(filterActiveUsers("student"));
+console.log(filterActiveUsers([
+    { name: "Rahim", isActive: false },
+    { name: "Karim", isActive: true },
+    { name: "Hasan", isActive: true }
+  ]));
+
+// Problem 2 end
